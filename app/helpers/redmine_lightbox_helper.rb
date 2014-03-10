@@ -1,20 +1,5 @@
 module RedmineLightboxHelper
 
-  def link_to_attachment_with_preview(attachment, options = {})
-    #TODO: remove this shit after the best way will be found
-    self.class.send(:include, RedmineLightboxHelper) unless self.methods.include?(:preview_available?)
-
-    original_link = link_to_attachment_without_preview(attachment, options)
-
-    return original_link unless preview_available?(attachment)
-
-    preview_icon = absolute_asset_url('images/preview.png')
-    icon_style = 'width: 18px; margin: 0px 4px'
-    preview_button = image_tag(preview_icon, :style => icon_style)
-
-    raw("#{original_link}#{preview_link_with(attachment, preview_button)}")
-  end
-
   def thumbnail_with_preview_tag(attachment)
     preview_link_with(attachment,
                       image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment)))
