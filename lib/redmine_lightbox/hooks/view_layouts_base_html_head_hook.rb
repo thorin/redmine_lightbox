@@ -8,10 +8,10 @@ module RedmineLightbox
                                       context[:controller].is_a?(FilesController) ||
                                       context[:controller].is_a?(BoardsController))
 
-          return stylesheet_link_tag("jquery.fancybox-1.3.4.css", :plugin => "redmine_lightbox", :media => "screen") \
+          return stylesheet_link_tag("jquery.fancybox.css", :plugin => "redmine_lightbox", :media => "screen") \
             + stylesheet_link_tag("lightbox.css", :plugin => "redmine_lightbox", :media => "screen") \
-            + javascript_include_tag('jquery.fancybox-1.3.4.pack.js', :plugin => 'redmine_lightbox') \
-            + javascript_include_tag('jquery.easing-1.3.pack.js', :plugin => 'redmine_lightbox') \
+            + javascript_include_tag('jquery.mousewheel-3.1.9.js', :plugin => 'redmine_lightbox') \
+            + javascript_include_tag('jquery.fancybox-2.1.5.pack.js', :plugin => 'redmine_lightbox') \
             + javascript_include_tag('lightbox.js', :plugin => 'redmine_lightbox') \
         else
           return ''
