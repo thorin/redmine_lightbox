@@ -1,9 +1,18 @@
 $('document').ready(function() {
-  var options = {
-      'transitionIn'	:	'elastic',
-      'transitionOut'	:	'elastic',
-      'speedIn'		    :	600,
-      'speedOut'		  :	200
+    var options = {
+        padding: 0,
+        openEffect: 'none',
+        closeEffect: 'none',
+        prevEffect: 'fade',
+        prevSpeed: 'fast',
+        nextEffect: 'fade',
+        nextSpeed: 'fast',
+        arrows: false,
+        closeClick: true,
+        mouseWheel :true,
+        helpers: {
+            overlay: null
+        }
     };
 
   $("div.attachments div.thumbnails a").attr("rel", "attachments");
@@ -19,7 +28,6 @@ $('document').ready(function() {
       'width': '100%', // or whatever
       'height': '100%',
       'autoDimensions': false,
-      'showNavArrows': false,
       'onClosed': function() {
         $("#fancybox-inner").empty()
       }
