@@ -1,18 +1,15 @@
 $('document').ready(function() {
     var options = {
         padding: 0,
-        openEffect: 'none',
-        closeEffect: 'none',
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
         prevEffect: 'fade',
         prevSpeed: 'fast',
         nextEffect: 'fade',
         nextSpeed: 'fast',
         arrows: false,
         closeClick: true,
-        mouseWheel :true,
-        helpers: {
-            overlay: null
-        }
+        mouseWheel :true
     };
 
   $("div.attachments div.thumbnails a").attr("rel", "attachments");
@@ -22,12 +19,11 @@ $('document').ready(function() {
     "ul.details a.attachment_preview, div.attachments div.thumbnails a")
     .fancybox(options);
 
-  $.extend(
+  options = $.extend({},
     options,
     {
-      'width': '100%', // or whatever
-      'height': '100%',
-      'autoDimensions': false,
+      'width': '95%', // or whatever
+      'height': '95%',
       'onClosed': function() {
         $("#fancybox-inner").empty()
       }
