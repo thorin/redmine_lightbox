@@ -10,8 +10,7 @@ module RedmineLightbox
         PREVIEW_TRANSFORMATIONS = {
           '.doc' => 'pdf',
           '.docx' => 'pdf',
-          '.rtf' => 'pdf',
-          '.pdf' => 'pdf'
+          '.rtf' => 'pdf'
         }
 
         has_one :attachment_preview, :dependent => :destroy

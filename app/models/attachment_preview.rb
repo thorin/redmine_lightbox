@@ -7,6 +7,8 @@ class AttachmentPreview < ActiveRecord::Base
 
   after_destroy :delete_from_disk!
 
+  attr_accessible :file_type
+
   def filename
     source = attachment.filename  
     RedmineLightbox::Services::DocumentConverter::preview_filename_for(source, file_type)

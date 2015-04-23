@@ -15,41 +15,33 @@ $('document').ready(function() {
   $("div.attachments div.thumbnails a").attr("rel", "attachments");
 
   $("div.attachments a.lightbox, div.attachments a.swf, div.attachments a.image, " +
-    "div.attachments a.attachment_preview, ul.details a.swf, ul.details a.image, " +
-    "ul.details a.attachment_preview, div.attachments div.thumbnails a")
+    "ul.details a.swf, ul.details a.image, div.attachments div.thumbnails a")
     .fancybox(options);
 
   options = $.extend({},
     options,
     {
-      'width': '95%', // or whatever
-      'height': '95%',
-      'onClosed': function() {
+      width: '100%', // or whatever
+      height: '100%',
+      autoSize: false,
+      type: 'html',
+      onClosed: function() {
         $("#fancybox-inner").empty()
       }
     }
   );
 
-  $("div.attachments a.pdf, ul.details a.pdf").each(function() {
+  $("div.attachments a.pdf, ul.details a.pdf, div.attachments a.attachment_preview, ul.details a.attachment_preview").each(function() {
     if(is_chrome()) {
-      var inline_link = this.href.replace(/\/attachments\//, "/attachments/download_inline/");
+      var inline_link = $(this).attr('class') == 'pdf' ?
+        this.href.replace(/\/attachments\//, "/attachments/download_inline/") :
+        this.href.replace(/\/preview\//, "/preview_inline/");
       options.content = embed_chrome_pdf(inline_link)
     }
     else {
       options.content = embed_pdf(this.href)
     }
-    $(this).fancybox(options)
-  });
-
-  $("div.attachments a.attachment_preview, ul.details a.attachment_preview").each(function() {
-    if(is_chrome()) {
-      var inline_link = this.href.replace(/\/preview\//, "/preview_inline/");
-      options.content = embed_chrome_pdf(inline_link)
-    }
-    else {
-      options.content = embed_pdf(this.href)
-    }
-    $(this).fancybox(options)
+    $(this).fancybox($.extend({}, options))
   });
 
   function is_chrome() {

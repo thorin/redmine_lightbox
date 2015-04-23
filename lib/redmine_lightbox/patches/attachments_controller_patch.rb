@@ -6,9 +6,8 @@ module RedmineLightbox
       extend ActiveSupport::Concern
 
       included do
-        before_filter :only => [:download_inline, :preview, :preview_inline] do
-          file_readable && read_authorize
-        end
+        prepend_before_filter :find_attachment, :only => [:show, :download, :thumbnail, :destroy, :download_inline, :preview, :preview_inline]
+        before_filter :file_readable, :read_authorize, :only => [:show, :download, :thumbnail, :download_inline, :preview, :preview_inline]
       end
 
       def preview
