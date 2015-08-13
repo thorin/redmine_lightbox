@@ -50,7 +50,7 @@ module RedmineLightboxHelper
       attachment_action = "preview"
     else
       if attachment.filename =~ /.(pdf|swf)$/i
-        link_class = $1
+        link_class = $1.downcase
       else
         link_class = "image"
       end
